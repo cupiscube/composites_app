@@ -47,6 +47,8 @@ def get_predict():
     data_class = get_data_class(sample)
     # Add Cluster column
     sample['Cluster'] = data_class
+    # Data normalization
+    sample = Normalizer_models[data_class].transform(sample)
     # Get model and predict
     predict = NN_models[data_class].predict(sample)[0][0]
     # Create answer
